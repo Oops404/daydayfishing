@@ -1,3 +1,22 @@
+<div align="center">
+
+<img src="/local/favicon.ico" width="90px" style="margin-top:30px;"/>
+<h1 align="center">
+    达瓦里希
+</h1>
+<h4 align="center">
+    开 箱 即 用 的 打 工 人 看 小 说 摸 鱼 神 器
+</h4> 
+</div>
+
+<p align="center">
+    <a href="#">
+        <img src="https://img.shields.io/badge/товарищи-0.01B+-green.svg" alt="товарищи">
+    </a>
+</p>
+
+#### 项目介绍
+打工人只有走在摸鱼的路上才是真的在赚钱。
 ### 使用说明
 
 > 将要看的txt文本放入file文件夹下，改名为1.txt。 然后双击belazy.exe即可开始阅读。
