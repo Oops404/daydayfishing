@@ -1,6 +1,6 @@
+<br><br>
 <div align="center">
-
-<img src="товарищи.jpg" width="160px" style="margin:30px auto;border-radius:25px"/>
+<img src="товарищи.jpg" width="160px" style="border-radius:25px"/>
 <h1 align="center">
     达瓦里希
 </h1>
