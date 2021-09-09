@@ -58,5 +58,3 @@
 
 > 若软件奔溃，可以将log.md文件发送至cheneyjin@outlook.com邮箱。我会尽量修复问题。
 
-<div style="float: right">cheneyjin@outlook.com 
-</div>
