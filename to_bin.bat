@@ -1,0 +1,1 @@
+python to_bin.py build_ext --inplace
