@@ -45,12 +45,14 @@ cf[SETTINGS_TAG] = {
     "SOFTWARE_HEIGHT": 60,
     "FONT_SIZE": 16,
     "PATH_READ": "",
+    "ENCODING": "gbk"
 }
 cf.read(PATH_CONFIG, encoding="utf-8")
 
 SOFTWARE_WIDTH = cf.getint(SETTINGS_TAG, "SOFTWARE_WIDTH")
 SOFTWARE_HEIGHT = cf.getint(SETTINGS_TAG, "SOFTWARE_HEIGHT")
 
+ENCODING = cf.get(SETTINGS_TAG, 'ENCODING').replace(" ", '')
 FONT_SIZE = cf.getint(SETTINGS_TAG, "FONT_SIZE")
 POS_X = cf.getint(SETTINGS_TAG, "POS_X")
 POS_Y = cf.getint(SETTINGS_TAG, "POS_Y")
@@ -61,6 +63,7 @@ TRANSPARENT = cf.getfloat(SETTINGS_TAG, "TRANSPARENT")
 BAN_ADV = cf.get(SETTINGS_TAG, "BAN_ADV")
 NEED_BAN_ADV = BAN_ADV is not None and len(BAN_ADV) > 0
 PATH_READ = cf.get(SETTINGS_TAG, "PATH_READ")
+
 if PATH_READ == "":
     PATH_READ = "{}/file/1.txt".format(PATH_APP)
 cf.set(SETTINGS_TAG, "PATH_READ", PATH_READ)
@@ -98,6 +101,7 @@ class DayDayFishing(object):
         self.ban_list = list()
         if NEED_BAN_ADV:
             self.ban_list = str(BAN_ADV).split("&&")
+        logger.info(ENCODING)
         logger.info(PATH_READ)
         logger.info(PATH_CONFIG)
 
@@ -182,11 +186,12 @@ class DayDayFishing(object):
             key_str = str(key).replace("'", "")
             if key_str == 'a':
                 self.auto = not self.auto
-                if self.auto:
-                    self.lock = self.auto
+                # if self.auto:
+                #     self.lock = self.auto
                 return
             if key_str == 'x':
                 self.p_win.window.setWindowOpacity(0.001)
+                self.auto = False
                 return
             if key_str == 'z':
                 self.p_win.window.setWindowOpacity(TRANSPARENT)
@@ -197,7 +202,7 @@ class DayDayFishing(object):
             if key_str == 'v':
                 self.last_page()
                 return
-            if key_str == 'b':
+            if key_str == Key.ctrl_r:
                 self.sponsor()
                 return
 
@@ -225,7 +230,7 @@ class DayDayFishing(object):
             QMessageBox(QMessageBox.Warning, "提示", "未找到文本文件").exec_()
             sys.exit()
 
-        with open(PATH_READ, 'r', encoding='gbk') as t:
+        with open(PATH_READ, 'r', encoding=ENCODING, errors='ignore') as t:
             for line in t.readlines():
                 if line == '\n' or line == '\r\n':
                     continue
@@ -256,5 +261,5 @@ class DayDayFishing(object):
                 self.now_pos = self.now_pos + self.read_len
         finally:
             cf.set(SETTINGS_TAG, "SAVE", str(self.now_line))
-            with open(PATH_CONFIG, "w+") as f:
-                cf.write(f)
+            with open(PATH_CONFIG, "w+") as fl:
+                cf.write(fl)
